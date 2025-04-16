@@ -1,0 +1,100 @@
+
+===============================
+✅ ÉTAPE 1 – Faire fonctionner l’API OC-Movies en local
+===============================
+
+🎯 Objectif :
+-------------
+Mettre en place une API REST locale (OCMovies-API) pour :
+- récupérer dynamiquement des films,
+- afficher ces films sur le site JustStreamIt,
+- travailler sans limite de quota.
+
+---
+
+🧩 Pourquoi cette étape est essentielle ?
+-----------------------------------------
+C’est la fondation du projet : sans l’API, aucune donnée ne peut être affichée.
+Tu dois pouvoir interroger les films via une API REST, en local.
+
+---
+
+🛠️ Ce que tu as fait concrètement :
+-----------------------------------
+
+1. Organisation de ton projet :
+```
+Projet6_JustStreamIt/
+├── api/         ← L’API Django
+├── env/         ← Environnement Python virtuel
+├── frontend/    ← À venir (HTML/CSS/JS)
+```
+
+2. Création de l’environnement virtuel :
+```bash
+python -m venv env
+source env/Scripts/activate  # sous Git Bash Windows
+```
+
+3. Clonage de l’API :
+```bash
+git clone https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR.git .
+```
+
+4. Installation des dépendances :
+```bash
+pip install -r requirements.txt
+```
+
+5. Initialisation de la base :
+```bash
+python manage.py migrate
+python manage.py create_db
+```
+
+6. Lancement du serveur :
+```bash
+python manage.py runserver
+```
+
+7. Vérification :
+Tu accèdes à l’API sur :
+http://127.0.0.1:8000/api/v1/titles/
+
+---
+
+📋 Résumé sous forme de tableau :
+---------------------------------
+
+| ÉTAPE                           | POURQUOI ?                            | CE QUE TU AS APPRIS                        |
+|--------------------------------|---------------------------------------|--------------------------------------------|
+| Préparer l’environnement       | Isoler ton projet Python              | Utiliser `venv`                            |
+| Cloner l’API                   | Récupérer le code source              | Utiliser Git & Git Bash                    |
+| Installer les dépendances      | Avoir toutes les bibliothèques utiles| Utiliser `pip install -r requirements.txt` |
+| Migrer + peupler la BDD        | Créer et remplir la base de films     | Migrations Django + `create_db`            |
+| Lancer l’API                   | Tester le serveur local               | Utiliser `manage.py runserver`             |
+| Lire les données dans le JSON  | Comprendre les réponses de l’API     | Interprétation d’une API REST              |
+
+---
+
+✅ Tu as vu des résultats comme :
+```json
+{
+  "count": 85851,
+  "next": "http://127.0.0.1:8000/api/v1/titles/?page=2",
+  "results": [
+    {
+      "id": 9,
+      "title": "Miss Jerry",
+      "year": 1894,
+      "imdb_score": "6.0",
+      ...
+    }
+  ]
+}
+```
+
+---
+
+📘 Tu es maintenant prêt pour :
+Étape 2 – **Analyser les réponses de l’API**
