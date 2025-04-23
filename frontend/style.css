@@ -1,4 +1,3 @@
-
 /* === JustStreamIt – CSS de base sans framework === */
 
 /* Reset simple */
@@ -50,14 +49,25 @@ section h2 {
   color: #333;
 }
 
-#best-movie img {
-  float: left;
-  margin-right: 20px;
+/* Nouveau layout pour la section meilleur film */
+.best-movie-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.img-container img {
   width: 200px;
   height: auto;
   border-radius: 5px;
 }
 
+.info-container {
+  flex: 1;
+}
+
+/* Bouton (si besoin plus tard) */
 #best-movie button {
   display: inline-block;
   padding: 10px 20px;

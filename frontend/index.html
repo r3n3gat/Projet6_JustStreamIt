@@ -19,27 +19,26 @@
   </header>
 
   <!-- Section Meilleur Film -->
-<section id="best-movie" class="container mb-5">
-  <h2>Meilleur film</h2>
-  <div class="row align-items-center">
-    <div class="col-md-4">
-      <img id="best-img" src="" class="img-fluid rounded" alt="affiche">
+  <section id="best-movie">
+    <h2>Meilleur film</h2>
+    <div class="best-movie-layout">
+      <div class="img-container">
+        <img id="best-img" src="https://picsum.photos/200/300" alt="affiche">
+      </div>
+      <div class="info-container">
+        <h3 id="best-title">Titre ici</h3>
+        <p id="best-desc">Description ici</p>
+      </div>
     </div>
-    <div class="col-md-8">
-      <h3 id="best-title">Titre ici</h3>
-      <p id="best-desc">Description ici</p>
-    </div>
-  </div>
-</section>
+  </section>
 
+  <!-- Catégorie Action (dynamique JS) -->
+  <section>
+    <h2>Films d’action</h2>
+    <div id="category-1" class="movie-row"></div>
+  </section>
 
-    <section class="container mb-5">
-  <h2>Films d’action</h2>
-  <div id="category-1" class="row"></div>
-</section>
-
-
-  <!-- Catégories de films -->
+  <!-- Catégories statiques -->
   <section class="category">
     <h2>Films les mieux notés</h2>
     <div class="movie-row">
@@ -76,11 +75,11 @@
     </div>
   </section>
 
-
   <!-- Pied de page -->
   <footer>
     <p>©r3n3gat 2025 JustStreamIt - Tous droits réservés ENOTO Stevi</p>
   </footer>
+
   <script src="main.js"></script>
 </body>
 </html>
