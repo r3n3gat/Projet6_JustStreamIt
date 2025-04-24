@@ -1,14 +1,24 @@
-export function setupToggleButtons() {
-  const toggleBtn = document.getElementById("toggle-category-1");
+
+export function setupToggleButton(buttonId, containerId) {
+  const toggleBtn = document.getElementById(buttonId);
+  const container = document.getElementById(containerId);
+
   toggleBtn.addEventListener("click", () => {
-    const category = document.getElementById("category-1");
-    const hiddenMovies = category.querySelectorAll(".d-none.d-md-block");
+    const movieCards = container.querySelectorAll(".movie-card");
     const isExpanded = toggleBtn.dataset.expanded === "true";
-    hiddenMovies.forEach(div => {
-      if (isExpanded) div.classList.add("d-none");
-      else div.classList.remove("d-none");
+
+    movieCards.forEach((card, index) => {
+      if (index >= 2 && index < 6) {
+        card.classList.toggle("d-none", isExpanded);
+      }
     });
+
     toggleBtn.textContent = isExpanded ? "Voir plus" : "Voir moins";
-    toggleBtn.dataset.expanded = !isExpanded;
+    toggleBtn.dataset.expanded = (!isExpanded).toString();
   });
+}
+
+// Fonction globale pour les setups multiples
+export function setupToggleButtons() {
+  setupToggleButton("toggle-category-1", "category-1");
 }
