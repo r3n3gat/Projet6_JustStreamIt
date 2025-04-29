@@ -1,0 +1,267 @@
+/* ========== RESET ========== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #222;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ========== CONTAINER GLOBAL ========== */
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ========== HEADER ========== */
+.custom-header {
+  background-color: #61787F;
+  border: 1px solid #000;
+  height: 122px;
+  padding: 0 20px;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+}
+
+.header-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  font-size: 40px;
+  margin-left: 60px;
+  color: #ffffff;
+}
+
+/* ========== TITRES DE SECTION ========== */
+.section-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 1;
+  color: #000000;
+  margin-top: 70px;
+  margin-bottom: 70px;
+}
+
+/* ========== MEILLEUR FILM ========== */
+.best-movie-box {
+  background-color: #ffffff;
+  border: 6px solid #000000;
+  padding: 20px;
+  border-radius: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+}
+
+#best-img {
+  width: 227px;
+  height: 334px;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.info-container {
+  flex: 1;
+}
+
+.best-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 48px;
+  color: #000000;
+  margin-bottom: 15px;
+}
+
+.best-desc {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 200;
+  font-size: 28px;
+  color: #000000;
+  margin-bottom: 20px;
+  max-width: 500px;
+}
+
+/* ========== BOUTON DETAIL SUR MEILLEUR FILM ========== */
+#best-detail-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 166px;
+  height: 68px;
+  background-color: #FA0B0B;
+  color: #ffffff;
+  font-family: 'Oswald', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  border-radius: 25px;
+  padding: 2px 4px;
+  transition: background-color 0.3s ease;
+}
+
+#best-detail-btn:hover {
+  background-color: #c70a0a;
+}
+
+/* ========== VIGNETTES DE FILMS (GRID SYSTEM) ========== */
+#top-rated, #selected-category {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  #top-rated, #selected-category {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  #top-rated, #selected-category {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ========== CARTE DE FILM ========== */
+.movie-card {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4; /* largeur/hauteur pour garder une forme d'affiche */
+  overflow: hidden;
+  border-radius: 6px;
+  background-color: #000;
+  position: relative;
+}
+
+.movie-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.movie-overlay {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: 112px;
+  background-color: rgba(45, 44, 44, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 10px;
+}
+
+.movie-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #ffffff;
+  line-height: 1;
+  margin: 0 0 5px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.movie-detail-btn {
+  align-self: flex-end;
+  width: 81px;
+  height: 25px;
+  background-color: #2D2C2C;
+  color: #ffffff;
+  font-family: 'Oswald', sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  border-radius: 25px;
+  padding: 2px 4px;
+  cursor: pointer;
+}
+
+.movie-detail-btn:hover {
+  background-color: #000000;
+}
+
+/* ========== FOOTER ========== */
+footer {
+  background-color: #222;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 60px;
+}
+
+/* ========== SELECT CATEGORIES GENRE ========== */
+.genre-select-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.genre-label {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #000;
+  margin-bottom: 0;
+}
+
+#genre-select {
+  flex: 1;
+  max-width: 300px;
+  min-width: 150px;
+  height: 40px;
+  font-size: 18px;
+  font-family: 'Oswald', sans-serif;
+}
+
+/* ========== BOUTON VOIR PLUS/VOIR MOINS ========== */
+.btn-toggle {
+  background-color: #FA0B0B;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  width: 214px;
+  height: 36px;
+  border-radius: 25px;
+  padding: 2px 4px;
+  margin: 20px auto 0;
+  display: block;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-toggle:hover {
+  background-color: #c70a0a;
+}
+
+@media (min-width: 992px) {
+  .btn-toggle {
+    display: none;
+  }
+
+  #best-detail-btn {
+    position: static;
+    display: block;
+    margin: 20px auto 0 auto;
+    width: 166px;
+    height: 68px;
+  }
+}
