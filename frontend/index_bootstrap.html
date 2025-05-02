@@ -3,70 +3,143 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JustStreamIt - Bootstrap</title>
-  <link rel="icon" href="data:,">
+  <title>JustStreamIt - Vidéos à la demande</title>
+
+  <!-- Polices -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="module" src="main.js"></script>
+
+  <!-- CSS personnalisé -->
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/modal.css" />
 </head>
+
 <body>
-  <header class="bg-dark text-white py-3 mb-4">
-    <div class="container d-flex justify-content-between align-items-center">
-      <h1 class="h3 m-0">JustStreamIt</h1>
-      <nav>
-        <ul class="nav">
-          <li class="nav-item"><a class="nav-link text-white" href="#">Accueil</a></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#">Catégories</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
 
-  <section id="best-movie" class="container mb-5">
-    <h2 class="mb-4">Meilleur film</h2>
-    <div class="row align-items-center">
-      <div class="col-md-4">
-        <img id="best-img" src="" class="img-fluid rounded" alt="affiche" />
+<!-- HEADER -->
+<header class="custom-header main-container d-flex align-items-center justify-content-center justify-content-md-start">
+  <img src="assets/logo.png" alt="Logo JustStreamIt" class="logo mx-auto mx-md-0">
+  <h1 class="header-title d-none d-md-block">Vidéos à la demande</h1>
+</header>
+
+<!-- MAIN -->
+<main class="main-container">
+
+  <!-- MEILLEUR FILM -->
+  <section id="best-movie" class="mb-5">
+    <h2 class="section-title">Meilleur film</h2>
+    <div class="best-movie-box row">
+      <div class="col-md-4 img-container">
+        <img id="best-img" src="" alt="Affiche du meilleur film" />
       </div>
-      <div class="col-md-8">
-        <h3 id="best-title">Titre ici</h3>
-        <p id="best-desc">Description ici</p>
+      <div class="col-md-8 info-container d-flex flex-column justify-content-between">
+        <div>
+          <h3 id="best-title" class="best-title">Titre ici</h3>
+          <p id="best-desc" class="best-desc">Description ici</p>
+        </div>
+        <button id="best-detail-btn" class="btn-detail">Détail</button>
       </div>
     </div>
   </section>
 
-  <section class="container mb-5">
-    <h2 class="mb-4">Films d'action</h2>
-    <div id="category-1" class="row gx-2 gy-3"></div>
+  <!-- FILMS LES MIEUX NOTES -->
+  <section class="mb-5">
+    <h2 id="top-rated-title" class="section-title">Films les mieux notés</h2>
+    <div id="top-rated" class="row gx-2 gy-3"></div>
     <div class="text-center mt-3">
-      <button class="btn btn-outline-primary" id="toggle-category-1" data-expanded="false">Voir plus</button>
+      <button class="btn-toggle" id="toggle-top-rated">Voir plus</button>
     </div>
   </section>
 
-  <footer class="bg-dark text-white text-center py-3 mt-5">
-    <p class="mb-0">©r3n3gat 2025 JustStreamIt - Tous droits réservés ENOTO Stevi</p>
-  </footer>
+  <!-- FILMS D'ACTION -->
+  <section class="mb-5">
+    <h2 id="selected-category-title" class="section-title">Films d'action</h2>
+    <div id="selected-category" class="row gx-2 gy-3"></div>
+    <div class="text-center mt-3">
+      <button class="btn-toggle" id="toggle-category">Voir plus</button>
+    </div>
+  </section>
 
-<!-- Modal Film -->
-<div class="modal fade" id="movieModal" tabindex="-1" aria-labelledby="movieModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+  <!-- GENRES -->
+  <section class="mb-5">
+    <div class="genre-select-wrapper">
+      <label for="genre-select" class="genre-label">Autres :</label>
+      <select id="genre-select" class="form-select" aria-label="Sélectionner un genre"></select>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="text-center py-4">
+  <p>© 2025 JustStreamIt - Tous droits réservés - ENOTO Stevi</p>
+</footer>
+
+<!-- MODALE -->
+<div class="modal fade" id="movieModal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="movieModalLabel">Titre du film</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
-      </div>
+
       <div class="modal-body">
-        <img id="modal-img" class="img-fluid float-start me-3 mb-2" src="" alt="affiche" style="max-width: 200px;" />
-        <p><strong>Année :</strong> <span id="modal-year"></span></p>
-        <p><strong>Genre :</strong> <span id="modal-genres"></span></p>
-        <p><strong>Réalisateur :</strong> <span id="modal-directors"></span></p>
-        <p><strong>Acteurs :</strong> <span id="modal-actors"></span></p>
-        <p><strong>Note IMDb :</strong> <span id="modal-score"></span></p>
-        <p><strong>Description :</strong> <span id="modal-desc"></span></p>
+        <div class="d-flex flex-lg-row flex-column align-items-start gap-4">
+
+          <!-- Texte -->
+          <div class="flex-fill">
+            <div class="d-flex justify-content-between align-items-center">
+              <h3 id="modal-title" class="modal-main-title">Titre du film</h3>
+              <button type="button" class="btn-close d-lg-none" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+
+            <p id="modal-year" class="modal-info"></p>
+            <p id="modal-genre" class="modal-info"></p>
+            <p id="modal-score" class="modal-info"></p>
+
+            <p class="modal-label">Réalisé par :</p>
+            <p id="modal-directors-name" class="modal-subinfo"></p>
+
+            <p id="modal-desc" class="modal-desc"></p>
+
+            <!-- Image Mobile -->
+            <div class="d-lg-none text-center mt-4">
+              <img id="modal-img" class="modal-poster" alt="Affiche du film mobile">
+            </div>
+
+            <p class="modal-label mt-4">Avec :</p>
+            <p id="modal-actors-name" class="modal-subinfo"></p>
+          </div>
+
+          <!-- Image Desktop -->
+          <div class="flex-shrink-0 d-none d-lg-block text-center">
+            <img id="modal-img-desktop" class="modal-poster" alt="Affiche du film desktop">
+          </div>
+
+        </div>
       </div>
+
+      <!-- Footer bouton "Fermer" pour Desktop -->
+      <div class="modal-footer border-0 justify-content-center d-none d-lg-flex">
+        <button type="button" class="btn-detail" data-bs-dismiss="modal">Fermer</button>
+      </div>
+
     </div>
   </div>
 </div>
+
+<!-- Bootstrap Bundle JS -->
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- SCRIPTS MODULES -->
+<script type="module" src="js/api.js" defer></script>
+<script type="module" src="js/utils.js" defer></script>
+<script type="module" src="modules/bestMovie.js" defer></script>
+<script type="module" src="modules/movieByGenre.js" defer></script>
+<script type="module" src="modules/genres.js" defer></script>
+<script type="module" src="modules/toggle.js" defer></script>
+<script type="module" src="modules/modal.js" defer></script>
+<script type="module" src="main.js" defer></script>
 
 </body>
 </html>

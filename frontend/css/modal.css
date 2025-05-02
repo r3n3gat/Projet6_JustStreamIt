@@ -1,23 +1,79 @@
+/* ===============================
+   MODALE PRINCIPALE
+   =============================== */
+
 @import url('variables.css');
 
-/* ========== MODALE GLOBALE ========== */
 .modal-content {
   background-color: var(--background-color);
   border: 6px solid var(--text-color);
-  border-radius: 0;
-  width: 778px;
-  height: 939px;
+  border-radius: var(--radius-small);
+  width: 100%;
+  max-width: 800px;
   margin: auto;
-  padding: 20px;
+  padding: var(--spacing-medium);
   position: relative;
 }
 
-/* ========== CROIX FERMETURE MOBILE/TABLETTE INLINE ========== */
+.modal-poster {
+  width: var(--poster-width);
+  height: var(--poster-height);
+  object-fit: cover;
+  border: 2px solid var(--text-color);
+}
+
+.modal-main-title {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: var(--font-title-big);
+  margin-bottom: var(--spacing-small);
+}
+
+.modal-info {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: var(--font-text-regular);
+  margin-bottom: var(--spacing-small);
+}
+
+.modal-label {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: var(--font-text-small);
+  margin-top: var(--spacing-large);
+  margin-bottom: var(--spacing-small);
+}
+
+.modal-subinfo, .modal-desc {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: var(--font-text-small);
+  margin-bottom: var(--spacing-small);
+}
+
+.modal-footer .btn-detail {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: var(--font-button);
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 5px 10px;
+  width: 214px;
+  height: 36px;
+  transition: background-color var(--transition-speed);
+}
+
+.modal-footer .btn-detail:hover {
+  background-color: var(--accent-color);
+}
+
+/* ===============================
+   CROIX DE FERMETURE CUSTOM (Mobile)
+   =============================== */
+
 .btn-close-custom {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='10' y1='10' x2='30' y2='30' stroke='red' stroke-width='5'/%3E%3Cline x1='30' y1='10' x2='10' y2='30' stroke='red' stroke-width='5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='10' y1='10' x2='30' y2='30' stroke='red' stroke-width='5'/%3E%3Cline x1='30' y1='10' x2='10' y2='30' stroke='red' stroke-width='5'/%3E%3C/svg%3E") no-repeat center/contain;
   width: 30px;
   height: 30px;
   opacity: 1;
@@ -26,83 +82,14 @@
   display: none;
 }
 
-/* ========== AFFICHAGE IMAGE ========== */
-.modal-poster {
-  width: 227px;
-  height: 334px;
-  object-fit: cover;
-  border: 2px solid var(--text-color);
-}
+/* ===============================
+   RESPONSIVE ADAPTATION MODALE
+   =============================== */
 
-/* ========== TITRE PRINCIPAL ========== */
-.modal-main-title {
-  font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: var(--font-title-big);
-  line-height: 1;
-  margin-bottom: 0;
-}
-
-/* ========== INFOS (année, genre, note) ========== */
-.modal-info {
-  font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: var(--font-text-regular);
-  line-height: 1;
-  margin-bottom: 0;
-}
-
-/* ========== LABELS (Réalisé par, Avec) ========== */
-.modal-label {
-  font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: var(--font-text-small);
-  line-height: 1;
-  margin-top: 3rem;
-  margin-bottom: 0.5rem;
-}
-
-/* ========== SUBINFO (réalisateurs, acteurs) ========== */
-.modal-subinfo {
-  font-family: var(--font-primary);
-  font-weight: 300;
-  font-size: var(--font-text-small);
-  line-height: 1.2;
-  margin-bottom: 0;
-}
-
-/* ========== DESCRIPTION ========== */
-.modal-desc {
-  font-family: var(--font-primary);
-  font-weight: 300;
-  font-size: var(--font-text-small);
-  line-height: 1.4;
-  margin: 0;
-}
-
-/* ========== FOOTER MODALE PC ========== */
-.modal-footer .btn-detail {
-  background-color: var(--primary-color);
-  color: #ffffff;
-  font-weight: bold;
-  font-size: var(--font-button);
-  border: none;
-  border-radius: 25px;
-  padding: 2px 4px;
-  width: 214px;
-  height: 36px;
-  transition: background-color 0.3s ease;
-}
-
-.modal-footer .btn-detail:hover {
-  background-color: #c70a0a;
-}
-
-/* ========== RESPONSIVE MOBILE/TABLETTE ========== */
 @media (max-width: 991px) {
   .modal-content {
-    width: 100%;
-    height: auto;
+    max-width: 100%;
+    padding: var(--spacing-small);
   }
 
   .d-flex.flex-lg-row.flex-column {
@@ -118,9 +105,9 @@
   }
 
   .modal-poster {
-    width: 99%;
+    width: 90%;
     height: auto;
-    margin: 0 auto;
+    margin: auto;
   }
 
   .modal-footer {
@@ -129,24 +116,13 @@
 
   .btn-close-custom {
     display: block;
-    position: static;
     margin-left: auto;
-    align-self: center;
-  }
-
-  .modal-header-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
   }
 }
 
-/* ========== RESPONSIVE DESKTOP (>=992px) ========== */
 @media (min-width: 992px) {
   .modal-content {
-    width: 778px;
-    height: 939px;
+    max-width: 800px;
   }
 
   .d-flex.flex-lg-row.flex-column {

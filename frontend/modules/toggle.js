@@ -1,26 +1,36 @@
+// /js/modules/toggle.js
+
 /**
  * Gère l'affichage progressif des films (voir plus / voir moins)
  */
 export function setupToggleButtons() {
+
+  const debounce = (func, delay = 200) => {
+    let timeoutId;
+    return (...args) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => func.apply(this, args), delay);
+    };
+  };
+
   const setupSectionToggle = (sectionId, buttonId) => {
     const section = document.getElementById(sectionId);
     const button = document.getElementById(buttonId);
 
     if (!section || !button) return;
 
-    let expanded = false; // état pour savoir si on a étendu la liste
-    const movieCards = section.querySelectorAll(".movie-card");
-
-    function updateVisibility() {
+    let expanded = false;
+    const updateVisibility = () => {
+      const movieCards = section.querySelectorAll(".movie-card");
       const width = window.innerWidth;
       let visibleCount;
 
       if (width < 768) {
-        visibleCount = 2; // mobile
+        visibleCount = 2;
       } else if (width < 992) {
-        visibleCount = 4; // tablette
+        visibleCount = 4;
       } else {
-        visibleCount = movieCards.length; // PC, tout visible
+        visibleCount = movieCards.length;
       }
 
       movieCards.forEach((card, index) => {
@@ -32,21 +42,23 @@ export function setupToggleButtons() {
       });
 
       if (width >= 992 || movieCards.length <= visibleCount) {
-        // Si on est en PC ou pas assez de films : pas besoin de bouton
         button.classList.add("d-none");
       } else {
         button.classList.remove("d-none");
         button.textContent = expanded ? "Voir moins" : "Voir plus";
       }
-    }
+    };
 
     // Initialisation
     updateVisibility();
-    window.addEventListener("resize", () => {
-      expanded = false; // Reset à "fermé" au resize
-      updateVisibility();
-    });
 
+    // Gestion fluide du resize
+    window.addEventListener("resize", debounce(() => {
+      expanded = false;
+      updateVisibility();
+    }));
+
+    // Toggle voir plus / voir moins
     button.addEventListener("click", () => {
       expanded = !expanded;
       updateVisibility();

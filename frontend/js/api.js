@@ -55,3 +55,20 @@ export async function fetchMovieDetails(id) {
     return null;
   }
 }
+
+/**
+ * Fonction pour récupérer la liste des genres disponibles
+ */
+export async function fetchGenres() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/genres/`);
+    if (!response.ok) {
+      throw new Error('Erreur lors du chargement des genres');
+    }
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error('fetchGenres:', error);
+    return [];
+  }
+}

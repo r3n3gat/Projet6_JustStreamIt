@@ -1,37 +1,42 @@
-import { API_BASE_URL } from "./config.js";
+// /js/modules/genres.js
+
+import { fetchGenres } from "../api.js";
 import { loadMoviesByGenre } from "./movieByGenre.js";
 
 /**
  * Charge dynamiquement les genres depuis l'API
  * et les insère dans une balise <select>
+ * @param {string} selectId - ID du <select> HTML
  */
 export async function loadGenres(selectId) {
   try {
-    const response = await fetch(`${API_BASE_URL}/genres/`);
-    const data = await response.json();
+    const genres = await fetchGenres();
 
     const select = document.getElementById(selectId);
     if (!select) {
-      console.error(`Élément avec l'id "${selectId}" non trouvé.`);
+      console.error(`Erreur : élément avec l'id "${selectId}" non trouvé.`);
       return;
     }
 
-    data.results.forEach(genre => {
+    genres.forEach(genre => {
       const option = document.createElement("option");
       option.value = genre.name;
       option.textContent = genre.name;
       select.appendChild(option);
     });
 
-    console.log(" Genres chargés :", data.results);
+    console.log("Genres chargés :", genres);
   } catch (error) {
-    console.error(" Erreur lors du chargement des genres :", error);
+    console.error("Erreur lors du chargement des genres :", error);
   }
 }
 
 /**
  * Gère le changement de genre sélectionné (dropdown)
  * et met à jour le titre + les films affichés
+ * @param {string} selectId - ID du <select>
+ * @param {string} titleId - ID de l'élément titre
+ * @param {string} containerId - ID du conteneur de films
  */
 export function setupGenreChangeListener(selectId, titleId, containerId) {
   const select = document.getElementById(selectId);
@@ -39,25 +44,20 @@ export function setupGenreChangeListener(selectId, titleId, containerId) {
   const button = document.getElementById("toggle-category");
 
   if (!select || !title || !button) {
-    console.error(" Un des éléments nécessaires est manquant dans le DOM.");
+    console.error("Erreur : un des éléments DOM nécessaires est manquant.");
     return;
   }
 
   select.addEventListener("change", async (e) => {
     const selected = e.target.value;
 
-    // Vider les anciens films avant de charger
     const container = document.getElementById(containerId);
+    if (!container) return;
     container.innerHTML = "";
 
     if (selected) {
-      // Maj du titre
       title.textContent = capitalizeFirstLetter(selected);
-
-      // Rechargement des films
       await loadMoviesByGenre(selected, containerId);
-
-      // Reset bouton toggle
       button.dataset.expanded = "false";
       button.textContent = "Voir plus";
     } else {
@@ -66,7 +66,11 @@ export function setupGenreChangeListener(selectId, titleId, containerId) {
   });
 }
 
-// Helper optionnel pour styliser proprement le titre
+/**
+ * Capitalise la première lettre d'une chaîne
+ * @param {string} str
+ * @returns {string}
+ */
 function capitalizeFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }

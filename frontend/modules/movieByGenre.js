@@ -1,7 +1,8 @@
-// movieByGenre.js
-import { checkImage } from "./utils.js";
-import { API_BASE_URL } from "./config.js";
-import { populateModal } from "./modal.js";
+// /js/modules/movieByGenre.js
+
+import { checkImage } from "../utils.js";
+import { fetchMoviesByCategory, fetchMovieDetails } from "../api.js";
+import { openModal } from "../modal.js";
 
 /**
  * Charge et affiche des films selon un genre donné.
@@ -10,67 +11,57 @@ import { populateModal } from "./modal.js";
  */
 export async function loadMoviesByGenre(genre, containerId) {
   try {
-    const response = await fetch(`${API_BASE_URL}/titles/?genre=${genre}&sort_by=-imdb_score&page_size=6`);
-    const data = await response.json();
-    const movies = data.results;
-
+    const movies = await fetchMoviesByCategory(genre);
     const container = document.getElementById(containerId);
-    container.innerHTML = "";
 
-    movies.forEach(async (movie) => {
+    if (!container) {
+      console.error(`Erreur : conteneur avec l'id ${containerId} introuvable.`);
+      return;
+    }
+
+    container.innerHTML = ""; // Nettoyer avant d'ajouter
+
+    for (const movie of movies.slice(0, 6)) { // Afficher seulement les 6 premiers films
       const card = document.createElement("div");
       card.classList.add("movie-card");
 
-      // Image du film
       const poster = document.createElement("img");
       const isValid = await checkImage(movie.image_url);
-      poster.src = isValid
-        ? movie.image_url
-        : "https://dummyimage.com/259x252/cccccc/000000&text=Image+indisponible";
+      poster.src = isValid ? movie.image_url : "https://dummyimage.com/259x252/cccccc/000000&text=Image+indisponible";
       poster.alt = movie.title || "Affiche indisponible";
       poster.classList.add("movie-poster");
 
-      // Overlay avec titre et bouton
       const overlay = document.createElement("div");
       overlay.classList.add("movie-overlay");
 
-      // Titre du film
       const title = document.createElement("p");
       title.classList.add("movie-title");
       title.textContent = movie.title.length > 20 ? movie.title.slice(0, 18) + "…" : movie.title;
 
-      // Bouton "Détail"
       const detailBtn = document.createElement("button");
       detailBtn.classList.add("movie-detail-btn");
       detailBtn.textContent = "Détail";
-      detailBtn.dataset.movieId = movie.id;
-
-      // Clic sur le bouton "Détail" ouvre la modale
       detailBtn.addEventListener("click", async (event) => {
-        event.stopPropagation(); // éviter d'autres événements accidentels
+        event.stopPropagation();
         try {
-          const res = await fetch(`${API_BASE_URL}/titles/${movie.id}`);
-          const movieDetails = await res.json();
-          await populateModal(movieDetails);
-
-          const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById("movieModal"));
-          modal.show();
+          const movieDetails = await fetchMovieDetails(movie.id);
+          if (movieDetails) {
+            openModal(movieDetails);
+          }
         } catch (error) {
           console.error("Erreur lors de l'ouverture de la modale pour un film :", error);
         }
       });
 
-      // Ajout des éléments dans l'overlay
       overlay.appendChild(title);
       overlay.appendChild(detailBtn);
 
-      // Ajout final de tous les éléments dans la carte
       card.appendChild(poster);
       card.appendChild(overlay);
 
-      // Insertion dans le conteneur principal
       container.appendChild(card);
-    });
+    }
+
   } catch (error) {
     console.error(`Erreur lors du chargement des films pour le genre ${genre} :`, error);
   }
