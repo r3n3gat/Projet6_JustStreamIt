@@ -67,10 +67,9 @@ Le site sera accessible à une URL du type :
 http://127.0.0.1:5500/dist/index_bootstrap.html
 
 ---
-
 ## 📂 Arborescence du projet
 
-\`\`\`
+```text
 /frontend
 ├── assets/
 │   └── logo.png
@@ -93,8 +92,7 @@ http://127.0.0.1:5500/dist/index_bootstrap.html
 ├── build.sh
 ├── start.sh
 └── README.md
-\`\`\`
-
+```
 ---
 
 ## ✨ Informations supplémentaires
