@@ -1,7 +1,7 @@
 # JustStreamIt - Projet Développeur d'application JavaScript
 
 Bienvenue sur le projet **JustStreamIt** !  
-Il s'agit d'un site web de vidéos à la demande, développé dans le cadre du parcours Développeur Web - OpenClassrooms.
+Il s'agit d'un site web de vidéos à la demande.
 
 ---
 
