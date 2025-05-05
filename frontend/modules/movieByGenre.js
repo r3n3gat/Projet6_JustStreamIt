@@ -1,8 +1,6 @@
-// /js/modules/movieByGenre.js
-
-import { checkImage } from "../utils.js";
-import { fetchMoviesByCategory, fetchMovieDetails } from "../api.js";
-import { openModal } from "../modal.js";
+import { checkImage } from '../js/utils.js';
+import { fetchMoviesByCategory, fetchMovieDetails } from '../js/api.js';
+import { openModal } from './modal.js';
 
 /**
  * Charge et affiche des films selon un genre donné.

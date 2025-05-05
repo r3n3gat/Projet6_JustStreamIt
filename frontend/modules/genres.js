@@ -1,6 +1,6 @@
 // /js/modules/genres.js
 
-import { fetchGenres } from "../api.js";
+import { fetchGenres } from "../js/api.js";
 import { loadMoviesByGenre } from "./movieByGenre.js";
 
 /**

@@ -4,6 +4,7 @@ SOURCE_DIR="./frontend"
 DIST_DIR="./dist"
 CSS_DIR="$SOURCE_DIR/css"
 MODULES_DIR="$SOURCE_DIR/modules"
+JS_DIR="$SOURCE_DIR/js"
 ASSETS_DIR="$SOURCE_DIR/assets"
 JS_MAIN="$SOURCE_DIR/main.js"
 
@@ -13,6 +14,7 @@ JS_MAIN="$SOURCE_DIR/main.js"
 # Créer nouvelle structure dist
 mkdir -p "$DIST_DIR/css"
 mkdir -p "$DIST_DIR/modules"
+mkdir -p "$DIST_DIR/js"     # ➔ Ajouté ici
 mkdir -p "$DIST_DIR/assets"
 
 # Copier assets (images etc)
@@ -22,6 +24,10 @@ cp -r "$ASSETS_DIR/"* "$DIST_DIR/assets/"
 # Copier modules JS
 echo "📦 Copie des modules JS..."
 cp -r "$MODULES_DIR/"* "$DIST_DIR/modules/"
+
+# Copier JS utilitaires (api.js, utils.js)
+echo "📜 Copie des fichiers JS (api, utils)..."
+cp -r "$JS_DIR/"* "$DIST_DIR/js/"
 
 # Minifier CSS
 echo "🎨 Minification du CSS..."

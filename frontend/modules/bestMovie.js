@@ -1,8 +1,6 @@
-// /js/modules/bestMovie.js
-
-import { checkImage } from "../utils.js";
-import { fetchBestMovies, fetchMovieDetails } from "../api.js";
-import { openModal } from "../modal.js";
+import { checkImage } from '../js/utils.js';
+import { fetchBestMovies, fetchMovieDetails } from '../js/api.js';
+import { openModal } from './modal.js';
 
 /**
  * Charge et affiche le meilleur film dans la bannière principale.

@@ -1,5 +1,3 @@
-// /js/modal.js
-
 import { checkImage } from "../js/utils.js";
 import { fetchMovieDetails } from "../js/api.js";
 

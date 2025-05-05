@@ -33,7 +33,7 @@ Il s'agit d'un site web de vidéos à la demande.
 ### 1. Cloner ce dépôt
 
 \`\`\`bash
-git clone https://github.com/mon-utilisateur/juststreamit.git
+git clone https://https://github.com/r3n3gat/Projet6_JustStreamIt.git
 cd juststreamit
 \`\`\`
 

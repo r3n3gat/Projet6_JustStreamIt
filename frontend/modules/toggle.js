@@ -1,71 +1,64 @@
-// /js/modules/toggle.js
+// /modules/toggle.js
 
 /**
- * Gère l'affichage progressif des films (voir plus / voir moins)
+ * Gère l'affichage "Voir plus" / "Voir moins" de manière responsive
  */
 export function setupToggleButtons() {
-
-  const debounce = (func, delay = 200) => {
-    let timeoutId;
-    return (...args) => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => func.apply(this, args), delay);
-    };
-  };
-
   const setupSectionToggle = (sectionId, buttonId) => {
     const section = document.getElementById(sectionId);
     const button = document.getElementById(buttonId);
 
-    if (!section || !button) return;
+    if (!section || !button) {
+      console.error(`Erreur : éléments pour ${sectionId} introuvables.`);
+      return;
+    }
 
-    let expanded = false;
+    let expanded = false; // état pour voir plus / voir moins
+
     const updateVisibility = () => {
-      const movieCards = section.querySelectorAll(".movie-card");
       const width = window.innerWidth;
+      const cards = section.querySelectorAll('.movie-card');
       let visibleCount;
 
       if (width < 768) {
-        visibleCount = 2;
+        visibleCount = 2; // Mobile
       } else if (width < 992) {
-        visibleCount = 4;
+        visibleCount = 4; // Tablette
       } else {
-        visibleCount = movieCards.length;
+        visibleCount = cards.length; // Desktop (tout affiché)
       }
 
-      movieCards.forEach((card, index) => {
+      cards.forEach((card, index) => {
         if (!expanded && index >= visibleCount) {
-          card.classList.add("d-none");
+          card.classList.add('d-none');
         } else {
-          card.classList.remove("d-none");
+          card.classList.remove('d-none');
         }
       });
 
-      if (width >= 992 || movieCards.length <= visibleCount) {
-        button.classList.add("d-none");
+      if (width >= 992 || cards.length <= visibleCount) {
+        button.classList.add('d-none'); // Cacher bouton en Desktop ou peu de films
       } else {
-        button.classList.remove("d-none");
+        button.classList.remove('d-none');
         button.textContent = expanded ? "Voir moins" : "Voir plus";
       }
     };
 
-    // Initialisation
-    updateVisibility();
-
-    // Gestion fluide du resize
-    window.addEventListener("resize", debounce(() => {
-      expanded = false;
+    window.addEventListener('resize', () => {
+      expanded = false; // reset
       updateVisibility();
-    }));
+    });
 
-    // Toggle voir plus / voir moins
-    button.addEventListener("click", () => {
+    button.addEventListener('click', () => {
       expanded = !expanded;
       updateVisibility();
     });
+
+    // Initialiser tout de suite
+    updateVisibility();
   };
 
-  // Activation pour chaque section
-  setupSectionToggle("top-rated", "toggle-top-rated");
-  setupSectionToggle("selected-category", "toggle-category");
+  // Activation pour les sections
+  setupSectionToggle('top-rated', 'toggle-top-rated');
+  setupSectionToggle('selected-category', 'toggle-category');
 }

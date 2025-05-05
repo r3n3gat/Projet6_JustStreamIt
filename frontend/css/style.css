@@ -275,3 +275,39 @@ footer {
   padding: var(--spacing-medium);
   margin-top: var(--spacing-large);
 }
+
+/* Limiter la largeur générale en mobile */
+@media (max-width: 575px) {
+  .main-container {
+    padding: 0 10px;
+  }
+
+  .section-title {
+    font-size: 32px;
+  }
+
+  #best-title {
+    font-size: 32px;
+  }
+
+  #best-desc {
+    font-size: 18px;
+  }
+
+  .btn-toggle {
+    width: 180px;
+    height: 40px;
+    font-size: 14px;
+  }
+}
+
+/* Un peu plus de "souffle" en bas du site */
+footer {
+  padding-top: 30px;
+}
+
+/* Forcer alignement à gauche pour meilleure cohérence Desktop */
+.best-movie-box {
+  margin-left: 0;
+  margin-right: auto;
+}
