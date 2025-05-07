@@ -68,7 +68,7 @@ export function setupModalListener() {
     try {
       const movie = await fetchMovieDetails(movieId);
       if (movie) {
-        openModal(movie);
+        await openModal(movie);
       }
     } catch (error) {
       console.error("Erreur lors de l'ouverture de la modale :", error);
