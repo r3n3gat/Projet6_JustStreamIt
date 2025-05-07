@@ -1,7 +1,7 @@
 # JustStreamIt - Projet Développeur d'application JavaScript
 
 Bienvenue sur le projet **JustStreamIt** !  
-Il s'agit d'un site web de vidéos à la demande.
+Il s'agit d'un site web de notation et classement de vidéos à la demande.
 
 ---
 
@@ -59,12 +59,14 @@ Depuis la racine du projet :
 \`\`\`
 
 Cela effectuera automatiquement :
-- Le nettoyage de l'ancien build (\`dist/\`),
-- La minification des fichiers CSS et JS,
 - L'ouverture du site dans votre navigateur via **live-server**.
 
 Le site sera accessible à une URL du type :  
-http://127.0.0.1:5500/dist/index_bootstrap.html
+http://127.0.0.1:8080/index_bootstrap.html
+
+Fonction annexe du "start.sh" : lancer le "build.sh" pour la preparation à la production
+- Nettoyage de l'ancien build (\`dist/\`),
+- Minification des fichiers CSS et JS,
 
 ---
 ## 📂 Arborescence du projet
@@ -72,6 +74,7 @@ http://127.0.0.1:5500/dist/index_bootstrap.html
 ```text
 /frontend
 ├── assets/
+│   └── favicon.png
 │   └── logo.png
 ├── css/
 │   ├── variables.css
@@ -115,4 +118,4 @@ Projet réalisé par **Stevi ENOTO** (alias r3n3gat)
 
 - Ce projet est prévu pour fonctionner exclusivement avec l'API locale OCMovies-API-EN-FR.
 - Le projet utilise un serveur local de développement rapide grâce à **live-server**.
-- Un dossier `/dist/` est automatiquement généré pour contenir la version compressée et optimisée du projet.
+- Un dossier `/dist/` est automatiquement généré pour contenir la version compressée et optimisée du projet en vue d'une prochaine mise en production.
