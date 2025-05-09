@@ -32,18 +32,18 @@ Il s'agit d'un site web de notation et classement de vidéos à la demande.
 
 ### 1. Cloner ce dépôt
 
-\`\`\`bash
-git clone https://https://github.com/r3n3gat/Projet6_JustStreamIt.git
-cd juststreamit
-\`\`\`
+```bash
+https://github.com/r3n3gat/Projet6_JustStreamIt.git 
+```
 
 ### 2. Installer et lancer l'API locale OCMovies
 
-\`\`\`bash
+```bash
 git clone https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR.git
 cd OCMovies-API-EN-FR
 uvicorn main:app --reload
-\`\`\`
+```
+
 
 L'API sera disponible sur :  
 http://127.0.0.1:8000/api/v1/
@@ -54,9 +54,9 @@ http://127.0.0.1:8000/api/v1/
 
 Depuis la racine du projet :
 
-\`\`\`bash
+```bash
 ./start.sh
-\`\`\`
+```
 
 Cela effectuera automatiquement :
 - L'ouverture du site dans votre navigateur via **live-server**.

@@ -14,7 +14,7 @@ export async function createMovieCard(movie, openModalCallback) {
   const card = document.createElement("div");
   card.classList.add("movie-card");
 
-  let isValid = false;
+  let isValid ;
   try {
     isValid = await checkImage(movie.image_url);
   } catch (error) {
